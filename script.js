@@ -19,18 +19,28 @@ async function showPosts() {
   const posts = await getPosts();
 
   posts.map((post) => {
+    const { id, title, body } = post;
     const postElement = document.createElement('div');
-    postElement.classList.add('post');
-    postElement.innerHTML = `
-        <div class="number">${post.id}</div>
-        <div class="post-info">
-            <h2 class="post-title">${post.title}</h2>
-            <p class="post-body">${post.body}</p>
-        </div>
+    const numberDiv = document.createElement('div');
+    const postInfoDiv = document.createElement('div');
+    const h2 = document.createElement('h2');
+    const p = document.createElement('p');
 
-    `;
+    postElement.classList.add('post');
+    numberDiv.classList.add('number');
+    postInfoDiv.classList.add('post-info');
+    h2.classList.add('post-title');
+    p.classList.add('post-body');
+
+    numberDiv.innerText = id;
+    h2.innerText = title;
+    p.innerText = body;
 
     postsContainer.appendChild(postElement);
+    postElement.appendChild(numberDiv);
+    postElement.appendChild(postInfoDiv);
+    postInfoDiv.appendChild(h2);
+    postInfoDiv.appendChild(p);
   });
 }
 
