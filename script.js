@@ -37,8 +37,10 @@ async function showPosts() {
     p.innerText = body;
 
     postsContainer.appendChild(postElement);
+
     postElement.appendChild(numberDiv);
     postElement.appendChild(postInfoDiv);
+
     postInfoDiv.appendChild(h2);
     postInfoDiv.appendChild(p);
   });
