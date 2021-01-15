@@ -24,7 +24,7 @@ async function showPosts() {
     postElement.innerHTML = `
         <div class="number">${post.id}</div>
         <div class="post-info">
-            <h2 class="post-title>${post.title}</h2>
+            <h2 class="post-title">${post.title}</h2>
             <p class="post-body">${post.body}</p>
         </div>
 
@@ -56,3 +56,23 @@ window.addEventListener('scroll', () => {
     showLoading();
   }
 });
+
+// Filter Posts by INput
+function filterPosts(e) {
+  const term = e.target.value.toUpperCase();
+  const posts = document.querySelectorAll('.post');
+
+  posts.forEach((post) => {
+    const title = post.querySelector('.post-title').innerText.toUpperCase();
+    const body = post.querySelector('.post-body').innerText.toUpperCase();
+
+    //  returns the first index at which a given element can be found in the array, or -1 if it is not present.
+    if (title.indexOf(term) > -1 || body.indexOf(term) > -1) {
+      post.style.display = 'flex';
+    } else {
+      post.style.display = 'none';
+    }
+  });
+}
+
+filter.addEventListener('input', filterPosts);
